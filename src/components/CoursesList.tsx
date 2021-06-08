@@ -1,19 +1,19 @@
 import { useQuery } from "react-query";
 
-const groupByField = (statsArr: any[], field: string) =>
-  statsArr
-    .reduce(
-      (prev: any, stat: any) =>
-        !prev.includes(stat[field]) ? prev.concat(stat[field]) : prev,
-      []
-    )
-    .map((fieldName: string) => [
-      fieldName,
-      statsArr.filter((stat: any) => stat[field] === fieldName),
-    ]);
+import { groupByField } from "../utils";
+import { StatObj, StatsArr } from "../types";
+import CourseStats from "./CourseStats";
 
 const CoursesList = () => {
-  const { isLoading, error, data }: any = useQuery("repoData", () =>
+  const {
+    isLoading,
+    error,
+    data,
+  }: {
+    isLoading: boolean;
+    error: Object | null;
+    data: StatsArr | undefined;
+  } = useQuery("repoData", () =>
     fetch(
       "https://xtramile.azure-api.net/stats/lukaszcoding?apiSecret=i34nvn324gdfg5"
     ).then((res) => res.json())
@@ -21,13 +21,15 @@ const CoursesList = () => {
   if (isLoading) return <p>"Loading data..."</p>;
   if (error) return <p>"An error has occurred: " + error.message</p>;
 
-  return (
-    <div>
-      {groupByField(data, "course").map(([key, val]: any) => (
-        <h3 key={key}>{key}</h3>
-      ))}
-    </div>
-  );
+  if (data !== undefined)
+    return (
+      <div>
+        {groupByField(data, "course").map(([key, val]: [string, StatsArr]) => (
+          <CourseStats statsArr={val} courseName={key} />
+        ))}
+      </div>
+    );
+  return <p></p>;
 };
 
 export default CoursesList;
