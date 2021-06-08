@@ -1,13 +1,13 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 
-import StatsList from "./components/StatsList";
+import CoursesList from "./components/CoursesList";
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <StatsList />
+      <CoursesList />
     </QueryClientProvider>
   );
 }
