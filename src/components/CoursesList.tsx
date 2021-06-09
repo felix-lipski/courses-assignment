@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 
 import { groupByField } from "../utils";
-import { StatObj, StatsArr } from "../types";
+import { StatsArr } from "../types";
 import CourseStats from "./CourseStats";
 
 const CoursesList = () => {
@@ -23,11 +23,11 @@ const CoursesList = () => {
 
   if (data !== undefined)
     return (
-      <div>
+      <section>
         {groupByField(data, "course").map(([key, val]: [string, StatsArr]) => (
-          <CourseStats statsArr={val} courseName={key} />
+          <CourseStats statsArr={val} courseName={key} key={key} />
         ))}
-      </div>
+      </section>
     );
   return <p></p>;
 };
