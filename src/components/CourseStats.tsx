@@ -39,8 +39,8 @@ const CourseStats = ({ courseName, statsArr }: PropsInterface) => {
             <tr>
               <th>Project</th>
               <th>Person</th>
-              <th>Lessons Opened</th>
-              <th>Lessons Completed</th>
+              <th className="number-column">Lessons Opened</th>
+              <th className="number-column">Lessons Completed</th>
             </tr>
           </thead>
           <tbody>
@@ -48,8 +48,8 @@ const CourseStats = ({ courseName, statsArr }: PropsInterface) => {
               <tr key={stat.project + stat.person + stat.courseStartedDate}>
                 <td>{stat.project}</td>
                 <td>{stat.person}</td>
-                <td>{stat.openedLessonsCount}</td>
-                <td>{stat.completedLessonsCount}</td>
+                <td className="number-column">{stat.openedLessonsCount}</td>
+                <td className="number-column">{stat.completedLessonsCount}</td>
               </tr>
             ))}
           </tbody>

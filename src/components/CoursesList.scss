@@ -20,6 +20,8 @@ div#root {
 section {
   display: flex;
   flex-direction: column;
+  max-width: 800px;
+  margin: auto;
 
   article {
     margin: 20px;
@@ -46,6 +48,11 @@ section {
       border-spacing: 0;
 
       text-align: center;
+      th:first-child,
+      td:first-child {
+        text-align: left;
+        padding-left: 3%;
+      }
 
       thead {
         background-color: $blue;
@@ -53,6 +60,10 @@ section {
       }
       tr:nth-child(even) {
         background-color: #f2f2f2;
+      }
+      th.number-column,
+      tr.number-column {
+        width: 110px;
       }
     }
 
