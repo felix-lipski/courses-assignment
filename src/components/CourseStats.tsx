@@ -11,7 +11,10 @@ const CourseStats = ({ courseName, statsArr }: PropsInterface) => {
   const [tableExpanded, setTableExpanded] = useState(false);
   return (
     <article>
-      <h1>{courseName}</h1>
+      <header>
+        <h1>{courseName}</h1>
+      </header>
+      <hr />
       <dl>
         <dt>Total Lessons Opened:</dt>
         <dd>
@@ -29,6 +32,7 @@ const CourseStats = ({ courseName, statsArr }: PropsInterface) => {
           )}
         </dd>
       </dl>
+      <hr />
       {tableExpanded && (
         <table>
           <thead>
@@ -39,7 +43,7 @@ const CourseStats = ({ courseName, statsArr }: PropsInterface) => {
               <th>Lessons Completed</th>
             </tr>
           </thead>
-          <thead>
+          <tbody>
             {statsArr.map((stat: StatObj) => (
               <tr key={stat.project + stat.person + stat.courseStartedDate}>
                 <td>{stat.project}</td>
@@ -48,11 +52,11 @@ const CourseStats = ({ courseName, statsArr }: PropsInterface) => {
                 <td>{stat.completedLessonsCount}</td>
               </tr>
             ))}
-          </thead>
+          </tbody>
         </table>
       )}
       <button onClick={() => setTableExpanded(!tableExpanded)}>
-        {tableExpanded ? "^" : "v"}
+        {tableExpanded ? "Collapse details ^" : "Expand details..."}
       </button>
     </article>
   );
